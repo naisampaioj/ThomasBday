@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grande Comemoração pelos XXXI Reinados de Thomas</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="intro">
+        <div class="intro-content">
+            <h2>📜 Uma mensagem proveniente das terras de Thomas foi entregue por corvos reais.</h2>
+
+            <button id="openInvite">
+                Romper o Selo
+            </button>
+        </div>
+    </div>
+
+    <main id="invite" class="hidden">
+
+        <section class="hero">
+
+            <img src="img/brasao.png"
+                 alt="Brasão do Reino de Thomas"
+                 class="brasao">
+
+            <h1>
+                ⚜️ Grande Comemoração pelos XXXI Reinados de Thomas ⚜️
+            </h1>
+
+            <h2>🎲 Nível 31 Desbloqueado</h2>
+
+        </section>
+
+        <section class="pergaminho">
+
+            <section class="pergaminho">
+
+<h3>📖 Crônicas do Reino</h3>
+
+<p>
+Há 31 invernos nasceu Thomas,
+aquele que dominaria os Tambores de Guerra,
+aprenderia os segredos dos Grandes Banquetes
+e reuniria aventureiros ao redor das mesas
+para incontáveis jornadas.
+</p>
+
+</section>
+
+            <h3>Ouvi! Ouvi!</h3>
+
+            <p>
+                Por decreto de Sua Majestade Thomas,
+                 <p>
+                Mestre-Cuca do Reino,
+                Bardo das Tavernas Reais,<br>
+                Guardião dos Dados Sagrados
+                e Conquistador de 31 Invernos,<br>
+                convoca-se toda a nobreza,<br>
+                aventureiros, bardos, magos
+                e companheiros de jornada<br>
+                para celebrar mais um ciclo glorioso
+                de sua existência.
+            </p>
+
+            <p><br>
+                📅 11 de Julho<br>
+                🕔 17h<br>
+                📍 Salão do Reino<br>
+                (mais conhecido pelos plebeus como o salão do condomínio) <br>
+            </p>
+            
+            <section class="pergaminho">
+
+<h3>🍺 Sobre os Suprimentos da Jornada</h3>
+
+<p>
+Não será exigido traje real,
+armadura, capa ou vestes encantadas.
+Vossa presença será honra suficiente.
+</p><br>
+
+<p><b>
+O Reino solicita gentilmente
+que cada aventureiro traga sua própria bebida favorita.
+</p><br></b>
+
+<p>
+E caso deseje contribuir para o banquete,
+poderá trazer algum petisco, doce ou iguaria de sua preferência.
+Mas não há obrigação alguma —
+a presença de cada companheiro já será motivo de celebração.
+</p>
+
+</section>
+
+<section class="pergaminho">
+
+    <h3>🗺️ Jornada ao Castelo</h3>
+    <p>
+        Os cartógrafos reais prepararam um mapa para orientar
+        todos os aventureiros rumo ao Grande Banquete.
+    </p>
+    <p>
+        Segui a rota indicada e chegareis ao salão onde
+        ocorrerá a celebração dos XXXI Reinados de Thomas.
+    </p>
+
+    <a
+        href="https://maps.app.goo.gl/RwENKbV1WZj9dx7x9"
+        target="_blank"
+        class="botao-mapa"
+    >
+        ⚔️ Iniciar Jornada ⚔️
+    </a>
+
+</section>
+
+<section class="pergaminho">
+
+    <h3>🎲 Confirmai vossa presença! Como desejais ser conhecido no Reino?</h3>
+
+    <p>
+        Escolhei vossa classe para que os escribas reais
+        registrem corretamente vossa presença nos anais do Reino.
+    </p>
+
+    <div class="classes">
+
+        <div class="classe-card" data-classe="Cavaleiro">
+            ⚔️
+            <span>Cavaleiro</span>
+        </div>
+
+        <div class="classe-card" data-classe="Mago">
+            🧙
+            <span>Mago</span>
+        </div>
+
+        <div class="classe-card" data-classe="Arqueiro">
+            🏹
+            <span>Arqueiro</span>
+        </div>
+
+        <div class="classe-card" data-classe="Bardo">
+            🎵
+            <span>Bardo</span>
+        </div>
+
+        <div class="classe-card" data-classe="Taverneiro">
+            🍺
+            <span>Taverneiro</span>
+        </div>
+
+        <div class="classe-card" data-classe="Nobre">
+            👑
+            <span>Nobre</span>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="pergaminho">
+
+    <h3>⚔️ Aceitar a Missão</h3>
+
+    <p>
+        Informai aos escribas reais vossos dados
+        para que possais ser incluído nos registros
+        do Grande Banquete.
+    </p>
+
+   <form id="rsvpForm">
+
+    <input
+        type="text"
+        id="nome"
+        placeholder="Vosso nome"
+        required
+    >
+
+    <div class="decisao-reino">
+
+        <button
+            type="button"
+            id="aceitarMissao"
+            class="botao-missao"
+        >
+            ⚔️<br>
+            ACEITAREI A MISSÃO
+        </button>
+
+        <button
+            type="button"
+            id="recusarMissao"
+            class="botao-recusa"
+        >
+            🐉<br>
+            NÃO PODEREI COMPARECER
+        </button>
+
+    </div>
+
+    <button
+    type="submit"
+    class="botao-enviar"
+    id="btnRegistrar"
+>
+    ⚜️ REGISTRAR DECISÃO ⚜️
+</button>
+
+</form>
+</section>
+
+<div id="mensagemReino" class="mensagem-reino hidden"></div>
+
+<section class="pergaminho">
+
+    <h3>🏆 Heróis Convocados</h3>
+
+<p id="contadorHerois">
+    ⚜️ Nenhum aventureiro respondeu ao chamado ainda ⚜️
+</p>
+
+<div id="listaHerois">
+
+</div>
+
+</section>
+
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
