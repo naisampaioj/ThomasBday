@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
     <title>Grande Comemoração pelos XXXI Reinados de Thomas</title>
 
     <link rel="stylesheet" href="style.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+
 </head>
 
 <body>
@@ -25,13 +28,47 @@
             <button id="openInvite">
                 Romper o Selo
             </button>
+
+            <!-- <script>
+window.addEventListener("DOMContentLoaded", () => {
+  const botao = document.getElementById("openInvite");
+
+  const audio = new Audio("musica.mp3");
+  audio.loop = true;
+  audio.volume = 0.5;
+
+  botao.addEventListener("click", async () => {
+    try {
+      await audio.play();
+    } catch (e) {
+      console.log("Erro:", e);
+    }
+  });
+});
+</script> -->
+
+
         </div>
     </div>
 
     <main id="invite" class="hidden">
 
-        <section class="hero">
+ <div class="divSom">
+    <button id="play">▶️</button>
+    <button id="pause">⏸️</button>
+    <button id="mute">🔇</button>
 
+    <audio id="musica" src="musica.mp3"></audio>
+    <script>
+        const audio = document.getElementById("musica");
+        
+        document.getElementById("openInvite").addEventListener("click", () => {
+          audio.play();
+        });
+    </script>
+</div>        
+
+        <section class="hero">
             <img src="img/brasao.png"
                  alt="Brasão do Reino de Thomas"
                  class="brasao">
@@ -254,5 +291,11 @@ a presença de cada companheiro já será motivo de celebração.
 
     <script src="script.js"></script>
 
+   <!-- <footer>
+        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/65OFX15A9FGfihlhBJ3dnu?utm_source=generator&theme=0&si=e5db54fdca944426" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" ?autoplay=1 ></iframe>
+</footer> -->
+
 </body>
+
+
 </html>

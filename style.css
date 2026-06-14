@@ -417,6 +417,22 @@ button{
 
 }
 
+.divSom {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#play, #pause, #mute{
+        all: unset;
+        font-size: 1rem;
+        padding: 5px 5px;
+        background-color: #222;
+        border-radius: 8px;
+        align-self: center;
+}
+
 /* ===================================== */
 /* RESPONSIVIDADE MOBILE - REINO THOMAS */
 /* ===================================== */

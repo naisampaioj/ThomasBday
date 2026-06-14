@@ -24,6 +24,7 @@ button.addEventListener("click", () => {
         top: 0,
         behavior: "smooth"
     });
+    
 let classeSelecionada = "";
 
 const cards = document.querySelectorAll(".classe-card");
@@ -365,6 +366,23 @@ async function carregarHerois(){
 
 }
 
+const audio = document.getElementById("musica");
+
+document.getElementById("openInvite").addEventListener("click", () => {
+  audio.play();
+});
+
+document.getElementById("play").addEventListener("click", () => {
+  audio.play();
+});
+
+document.getElementById("pause").addEventListener("click", () => {
+  audio.pause();
+});
+
+document.getElementById("mute").addEventListener("click", () => {
+  audio.muted = !audio.muted;
+});
 
 
 }); // fecha button.addEventListener
