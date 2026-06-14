@@ -1,6 +1,8 @@
 const button = document.getElementById("openInvite");
 const intro = document.getElementById("intro");
 const invite = document.getElementById("invite");
+const URL_SCRIPT =
+"https://script.google.com/macros/s/AKfycbwwcPIYuFALEQGtH4oL6oyY_aIe7lzUTatFpZ6-_w_vgSvEVzp4ECyx16CglVvN1zW1/exec";
 
 button.addEventListener("click", () => {
 
@@ -85,7 +87,7 @@ btnAceitar.addEventListener(
         );
 
         btnRegistrar.innerHTML =
-            "⚔️ REGISTRAR MISSÃO ⚔️";
+            "📜 ENVIAR RESPOSTA AO REINO 📜";
 
     }
 );
@@ -113,7 +115,7 @@ btnRecusar.addEventListener(
 
 form.addEventListener(
     "submit",
-    (event) => {
+    async (event) => {
 
         event.preventDefault();
 
@@ -153,49 +155,71 @@ if(presenca === "Nao"){
 }
 
 
-
-
 if(presenca === "Sim"){
 
-const titulo =
-    getTitulo(classeSelecionada);
+    const titulo =
+        getTitulo(classeSelecionada);
 
-const heroi =
-    document.createElement("div");
+    try{
 
-heroi.classList.add("heroi-card");
+        await fetch(URL_SCRIPT, {
 
-heroi.innerHTML = `
-    <strong>
-        ${getEmojiClasse(classeSelecionada)}
-        ${nome}
-    </strong>
-    <br>
-    ${classeSelecionada}
-    •
-    ${titulo}
-`;
+            method:"POST",
 
-listaHerois.appendChild(heroi);
+            headers:{
+                "Content-Type":"application/json"
+            },
 
-mensagemReino.innerHTML =
-    "⚜️ Vossa presença foi registrada nos anais do Reino! ⚜️";
+            body:JSON.stringify({
 
-mensagemReino.classList.remove("hidden");
+                nome:nome,
 
-setTimeout(() => {
+                classe:classeSelecionada,
 
-    mensagemReino.classList.add("hidden");
+                titulo:titulo,
 
-}, 4000);
+                presenca:presenca
 
+            })
 
+        });
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "⚠️ Os corvos reais encontraram dificuldades ao registrar vossa resposta."
+        );
+
+        return;
+    }
+
+    const heroi =
+        document.createElement("div");
+
+    heroi.classList.add("heroi-card");
+
+    heroi.innerHTML = `
+        <strong>
+            ${getEmojiClasse(classeSelecionada)}
+            ${nome}
+        </strong>
+        <br>
+        ${titulo}
+    `;
+
+    listaHerois.appendChild(heroi);
+
+    atualizarContador();
+
+}
 
 atualizarContador();
-}
-        form.reset();
 
-        classeSelecionada = "";
+form.reset();
+
+classeSelecionada = "";
 presenca = "";
 
 cards.forEach(card =>
@@ -213,8 +237,7 @@ btnRecusar.classList.remove(
 btnRegistrar.innerHTML =
     "⚜️ REGISTRAR DECISÃO ⚜️";
 
-    }
-);
+});
 
 
 function atualizarContador(){
@@ -264,26 +287,21 @@ function getEmojiClasse(classe){
     return mapa[classe];
 }
 
-function getTitulo(classe){
+function getTitulo(classeSelecionada){
 
     const titulos = {
 
         Cavaleiro: "Guardião do Reino",
-
         Mago: "Discípulo Arcano",
-
         Arqueiro: "Vigia das Fronteiras",
-
         Bardo: "Voz das Tavernas",
-
         Taverneiro: "Mestre das Canecas",
-
         Nobre: "Membro da Corte Real"
 
     };
 
-    return titulos[classe];
+    return titulos[classeSelecionada];
+
 }
 
-
-});
+}); // fecha button.addEventListener
