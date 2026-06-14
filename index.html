@@ -34,7 +34,7 @@
 
     <main id="invite" class="hidden">
 
- <div class="divSom">
+ <!--<div class="divSom">
     <button id="play">▶️</button>
     <button id="pause">⏸️</button>
     <button id="mute">🔇</button>
@@ -46,7 +46,87 @@
         document.getElementById("openInvite").addEventListener("click", () => {
           audio.play();
         });
+    </script> -->
+
+<div class="divSom">
+    <button id="play">▶️</button>
+    <button id="pause">⏸️</button>
+    <button id="mute">🔇</button>
+    <button id="next">⏭️</button>
+
+    <audio id="musica"></audio>
+    
+    <script>
+
+        const listaMusicas = [
+          'musica.mp3',
+          'musica2.mp3',
+          'musica3.mp3',
+          'musica4.mp3',
+          'musica5.mp3'
+        ];
+
+        let musicasRestantes = [...listaMusicas];
+
+        const audio = document.getElementById("musica");
+        const btnPlay = document.getElementById("play");
+        const btnPause = document.getElementById("pause");
+        const btnMute = document.getElementById("mute");
+        const btnNext = document.getElementById("next");
+
+        // Função para sortear e carregar a próxima música sem repetir
+        function carregarProximaMusicaEmShuffle() {
+          if (musicasRestantes.length === 0) {
+            musicasRestantes = [...listaMusicas]; 
+          }
+
+          const indiceAleatorio = Math.floor(Math.random() * musicasRestantes.length);
+          const musicaSorteada = musicasRestantes.splice(indiceAleatorio, 1);
+
+          audio.src = musicaSorteada;
+        }
+
+        // Iniciar o Shuffle através do botão "openInvite"
+        document.getElementById("openInvite").addEventListener("click", () => {
+          if (!audio.src) {
+            carregarProximaMusicaEmShuffle();
+          }
+          audio.play();
+        });
+
+        // Configuração do botão Play
+        btnPlay.addEventListener("click", () => {
+          if (!audio.src) {
+            carregarProximaMusicaEmShuffle();
+          }
+          audio.play();
+        });
+
+        // Configuração do botão Pause
+        btnPause.addEventListener("click", () => {
+          audio.pause();
+        });
+
+        // Configuração do botão Mute
+        btnMute.addEventListener("click", () => {
+          audio.muted = !audio.muted;
+          btnMute.textContent = audio.muted ? "🔊" : "🔇";
+        });
+
+        // 2. NOVA LOGÍSTICA: Configuração do botão Próxima (Next)
+        btnNext.addEventListener("click", () => {
+          carregarProximaMusicaEmShuffle(); // Sorteia a nova música
+          audio.play();                     // Toca imediatamente
+        });
+
+        // AUTOMÁTICO: Passa para a próxima sozinha quando acabar
+        audio.addEventListener("ended", () => {
+          carregarProximaMusicaEmShuffle();
+          audio.play();
+        });
     </script>
+</div>
+
 </div>        
 
         <section class="hero">

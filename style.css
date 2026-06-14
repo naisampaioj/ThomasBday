@@ -431,7 +431,7 @@ button{
   align-items: center;
 }
 
-#play, #pause, #mute{
+#play, #pause, #mute, #next{
         all: unset;
         font-size: 1rem;
         padding: 5px 5px;
