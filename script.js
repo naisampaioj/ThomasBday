@@ -162,27 +162,20 @@ if(presenca === "Sim"){
 
     try{
 
-        await fetch(URL_SCRIPT, {
+await fetch(URL_SCRIPT, {
 
-            method:"POST",
+    method:"POST",
 
-            headers:{
-                "Content-Type":"application/json"
-            },
+    body:JSON.stringify({
 
-            body:JSON.stringify({
+        nome:nome,
+        classe:classeSelecionada,
+        titulo:titulo,
+        presenca:presenca
 
-                nome:nome,
+    })
 
-                classe:classeSelecionada,
-
-                titulo:titulo,
-
-                presenca:presenca
-
-            })
-
-        });
+});
 
     }catch(error){
 
