@@ -10,6 +10,8 @@ button.addEventListener("click", () => {
 
     invite.classList.remove("hidden");
 
+    carregarHerois();
+
     invite.style.opacity = "0";
 
     setTimeout(() => {
@@ -206,13 +208,12 @@ await fetch(URL_SCRIPT, {
 
     atualizarContador();
 
-    mensagemReino.innerHTML =
-`
-📜 Os escribas reais registraram vossa resposta com sucesso!<br>
-⚜️ Que os ventos sejam favoráveis até o Grande Banquete ⚜️
-`;
-
-mensagemReino.classList.remove("hidden");
+alert(
+    "⚜️ MISSÃO ACEITA! ⚜️\n\n" +
+    nome +
+    ", vossa presença foi registrada nos anais do Reino.\n\n" +
+    "Os corvos reais já levaram a notícia ao Castelo de Thomas. 🐦‍"
+);
 
 }
 
@@ -309,6 +310,62 @@ function getTitulo(classeSelecionada){
     return titulos[classeSelecionada];
 
 }
+
+async function carregarHerois(){
+
+    try{
+
+        const resposta =
+            await fetch(URL_SCRIPT);
+
+        const dados =
+            await resposta.json();
+
+        listaHerois.innerHTML = "";
+
+        dados.forEach(item => {
+
+            const nome = item[0];
+            const classe = item[1];
+            const titulo = item[2];
+            const presenca = item[3];
+
+            if(presenca !== "Sim"){
+                return;
+            }
+
+            const heroi =
+                document.createElement("div");
+
+            heroi.classList.add("heroi-card");
+
+            heroi.innerHTML = `
+                <strong>
+                    ${getEmojiClasse(classe)}
+                    ${nome}
+                </strong>
+                <br>
+                ${titulo}
+            `;
+
+            listaHerois.appendChild(heroi);
+
+        });
+
+        atualizarContador();
+
+    }catch(error){
+
+        console.error(
+            "Erro ao carregar heróis:",
+            error
+        );
+
+    }
+
+}
+
+
 
 }); // fecha button.addEventListener
 
