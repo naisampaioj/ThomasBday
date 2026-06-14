@@ -2,7 +2,7 @@ const button = document.getElementById("openInvite");
 const intro = document.getElementById("intro");
 const invite = document.getElementById("invite");
 const URL_SCRIPT =
-"https://script.google.com/macros/s/AKfycbwwcPIYuFALEQGtH4oL6oyY_aIe7lzUTatFpZ6-_w_vgSvEVzp4ECyx16CglVvN1zW1/exec";
+"https://script.google.com/macros/s/AKfycbwqNVQpibiLC2_TaW9x5Iwrj2NSrjsSgUQ6Che-ZxlTCOJTFbn-eAwpJZB-6I4OQmM/exec";
 
 button.addEventListener("click", () => {
 
