@@ -206,11 +206,24 @@ await fetch(URL_SCRIPT, {
 
     atualizarContador();
 
+    mensagemReino.innerHTML =
+`
+📜 Os escribas reais registraram vossa resposta com sucesso!<br>
+⚜️ Que os ventos sejam favoráveis até o Grande Banquete ⚜️
+`;
+
+mensagemReino.classList.remove("hidden");
+
 }
 
 atualizarContador();
 
 form.reset();
+setTimeout(() => {
+
+    mensagemReino.classList.add("hidden");
+
+}, 6000);
 
 classeSelecionada = "";
 presenca = "";
@@ -298,3 +311,4 @@ function getTitulo(classeSelecionada){
 }
 
 }); // fecha button.addEventListener
+
