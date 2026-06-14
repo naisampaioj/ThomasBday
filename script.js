@@ -213,7 +213,7 @@ alert(
     "⚜️ MISSÃO ACEITA! ⚜️\n\n" +
     nome +
     ", vossa presença foi registrada nos anais do Reino.\n\n" +
-    "Os corvos reais já levaram a notícia ao Castelo de Thomas. 🐦‍"
+    "Os corvos reais já levaram a notícia ao Castelo de Thomas. 🏰"
 );
 
 }
@@ -384,6 +384,23 @@ document.getElementById("mute").addEventListener("click", () => {
   audio.muted = !audio.muted;
 });
 
+
+//Código para alterar em exibir ou não os botões de aceitar ou recusar missão
+
+const aceitarMissao = document.getElementById('aceitarMissao');
+const recusarMissao = document.getElementById('recusarMissao');
+
+// Quando o Botão A for selecionado
+aceitarMissao.addEventListener('click', () => {
+  aceitarMissao.classList.remove('quase-invisivel'); // Garante que o A fica visível
+  recusarMissao.classList.add('quase-invisivel');    // Deixa o B quase invisível
+});
+
+// Quando o Botão B for selecionado
+recusarMissao.addEventListener('click', () => {
+  recusarMissao.classList.remove('quase-invisivel'); // Garante que o B fica visível
+  aceitarMissao.classList.add('quase-invisivel');    // Deixa o A quase invisível
+});
 
 }); // fecha button.addEventListener
 
