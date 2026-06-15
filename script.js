@@ -167,6 +167,8 @@ await fetch(URL_SCRIPT, {
 
 });
 
+await carregarHerois();
+
 if(presenca === "Sim"){
 
 alert(
@@ -199,24 +201,24 @@ alert(
     }
 
 if(presenca === "Sim"){
-const heroi =
-    document.createElement("div");
+// const heroi =
+//     document.createElement("div");
 
-heroi.classList.add("heroi-card");
+// heroi.classList.add("heroi-card");
 
-heroi.innerHTML = `
-    <strong>
-        ${getEmojiClasse(classeSelecionada)}
-        ${nome}
-    </strong>
-    <br>
-    ${titulo}
-`;
+// heroi.innerHTML = `
+//     <strong>
+//         ${getEmojiClasse(classeSelecionada)}
+//         ${nome}
+//     </strong>
+//     <br>
+//     ${titulo}
+// `;
 
-listaHerois.appendChild(heroi);
+// listaHerois.appendChild(heroi);
 
-atualizarContador();
-}
+// atualizarContador();
+    }
 }
 
 form.reset();
