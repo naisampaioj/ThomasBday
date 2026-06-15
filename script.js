@@ -144,21 +144,8 @@ if(!presenca){
 }
 
 
-if(presenca === "Nao"){
 
-    alert(
-        "📜 Os escribas reais lamentam vossa ausência, mas compreenderão as circunstâncias de vossa jornada."
-    );
-
-    form.reset();
-
-    
-
-    return;
-}
-
-
-if(presenca === "Sim"){
+if(presenca === "Sim" || presenca === "Nao"){
 
     const titulo =
         getTitulo(classeSelecionada);
@@ -180,6 +167,26 @@ await fetch(URL_SCRIPT, {
 
 });
 
+if(presenca === "Sim"){
+
+alert(
+    "⚜️ MISSÃO ACEITA! ⚜️\n\n" +
+    nome +
+    ", vossa presença foi registrada nos anais do Reino.\n\n" +
+    "Os corvos reais já levaram a notícia ao Castelo de Thomas. 🏰"
+);
+
+
+}
+else{
+
+alert(
+    "📜 Os escribas reais lamentam vossa ausência.\n\n" +
+    "Mas compreenderão as circunstâncias de vossa jornada. 🐦‍⬛"
+);
+
+}
+
     }catch(error){
 
         console.error(error);
@@ -191,34 +198,26 @@ await fetch(URL_SCRIPT, {
         return;
     }
 
-    const heroi =
-        document.createElement("div");
+if(presenca === "Sim"){
+const heroi =
+    document.createElement("div");
 
-    heroi.classList.add("heroi-card");
+heroi.classList.add("heroi-card");
 
-    heroi.innerHTML = `
-        <strong>
-            ${getEmojiClasse(classeSelecionada)}
-            ${nome}
-        </strong>
-        <br>
-        ${titulo}
-    `;
+heroi.innerHTML = `
+    <strong>
+        ${getEmojiClasse(classeSelecionada)}
+        ${nome}
+    </strong>
+    <br>
+    ${titulo}
+`;
 
-    listaHerois.appendChild(heroi);
-
-    atualizarContador();
-
-alert(
-    "⚜️ MISSÃO ACEITA! ⚜️\n\n" +
-    nome +
-    ", vossa presença foi registrada nos anais do Reino.\n\n" +
-    "Os corvos reais já levaram a notícia ao Castelo de Thomas. 🏰"
-);
-
-}
+listaHerois.appendChild(heroi);
 
 atualizarContador();
+}
+}
 
 form.reset();
 setTimeout(() => {
@@ -274,43 +273,67 @@ function atualizarContador(){
 
 }
 
-function getEmojiClasse(classe){
 
-    const mapa = {
-
-        Cavaleiro:"⚔️",
-
-        Mago:"🧙",
-
-        Arqueiro:"🏹",
-
-        Bardo:"🎵",
-
-        Taverneiro:"🍺",
-
-        Nobre:"👑"
-
-    };
-
-    return mapa[classe];
-}
 
 function getTitulo(classeSelecionada){
 
-    const titulos = {
+const titulos = {
 
-        Cavaleiro: "Guardião do Reino",
-        Mago: "Discípulo Arcano",
-        Arqueiro: "Vigia das Fronteiras",
-        Bardo: "Voz das Tavernas",
-        Taverneiro: "Mestre das Canecas",
-        Nobre: "Membro da Corte Real"
+    Cavaleiro: [
+        "Guardião do Reino",
+        "Espada da Coroa",
+        "Protetor das Fronteiras",
+        "Campeão de Thomas"
+    ],
 
-    };
+    Mago: [
+        "Discípulo Arcano",
+        "Portador dos Mistérios",
+        "Guardião das Runas",
+        "Arquimago das Terras Antigas"
+    ],
 
-    return titulos[classeSelecionada];
+    Arqueiro: [
+        "Vigia das Fronteiras",
+        "Olho da Floresta",
+        "Caçador das Sombras",
+        "Sentinela do Reino"
+    ],
+
+    Bardo: [
+        "Voz das Tavernas",
+        "Cantor das Crônicas",
+        "Mestre das Baladas",
+        "Arauto das Grandes Aventuras"
+    ],
+
+    Taverneiro: [
+        "Mestre das Canecas",
+        "Guardião dos Banquetes",
+        "Fornecedor Oficial de Hidromel",
+        "Herói das Madrugadas"
+    ],
+
+    Clérigo: [
+        "Porradeiro Divino",
+        "Guardião dos Templos",
+        "Portador da Luz Sagrada",
+        "Abençoado pelos Céus"
+    ]
+
+};
+
+const lista = titulos[classeSelecionada];
+
+const indice =
+    Math.floor(
+        Math.random() * lista.length
+    );
+
+return lista[indice];
 
 }
+
 
 async function carregarHerois(){
 
@@ -321,6 +344,8 @@ async function carregarHerois(){
 
         const dados =
             await resposta.json();
+            atualizarConselhoReal(dados);
+
 
         listaHerois.innerHTML = "";
 
@@ -403,4 +428,154 @@ recusarMissao.addEventListener('click', () => {
 });
 
 }); // fecha button.addEventListener
+
+
+function getEmojiClasse(classe){
+
+    const mapa = {
+
+        Cavaleiro:"⚔️",
+
+        Mago:"🧙",
+
+        Arqueiro:"🏹",
+
+        Bardo:"🎵",
+
+        Taverneiro:"🍺",
+
+        Clérigo:"🙏"
+
+    };
+
+    return mapa[classe];
+}
+
+
+
+
+function atualizarConselhoReal(dados){
+const painel =
+    document.getElementById("painelReino");
+
+const totalRespostas =
+    dados.length;
+
+const confirmados =
+    dados.filter(
+        linha => linha[3] === "Sim"
+    ).length;
+
+const recusas =
+    dados.filter(
+        linha => linha[3] === "Nao"
+    ).length;
+
+
+
+const contagemClasses = {};
+const distribuicao = {};
+
+dados.forEach(linha => {
+
+    const classe = linha[1];
+    const presenca = linha[3];
+
+    if(presenca !== "Sim") return;
+
+    contagemClasses[classe] =
+        (contagemClasses[classe] || 0) + 1;
+
+    distribuicao[classe] =
+        (distribuicao[classe] || 0) + 1;
+
+});
+
+const ranking = Object.entries(distribuicao)
+    .sort((a,b) => b[1] - a[1]);
+
+let htmlClasses = "";
+
+ranking.forEach(([classe, quantidade], index) => {
+
+    let posicao = "";
+
+    if(index === 0){
+        posicao = "1º";
+    }
+    else if(index === 1){
+        posicao = "2º";
+    }
+    else if(index === 2){
+        posicao = "3º";
+    }
+    else{
+        posicao = `${index + 1}º`;
+    }
+
+    htmlClasses += `
+        <div class="classe-estatistica">
+            ${posicao}
+            ${getEmojiClasse(classe)}
+            ${classe} — ${quantidade}
+        </div>
+    `;
+
+});
+
+let classeDominante = "Nenhuma";
+let maiorQuantidade = 0;
+
+
+for(const classe in contagemClasses){
+
+if(contagemClasses[classe] > maiorQuantidade){
+
+    maiorQuantidade =
+        contagemClasses[classe];
+
+    classeDominante =
+        classe;
+}
+}
+
+console.log(classeDominante);
+painel.innerHTML = `
+
+    <div class="card-conselho">
+        <h4>🏆 Heróis Confirmados</h4>
+        <span>${confirmados}</span>
+    </div>
+
+    <div class="card-conselho">
+        <h4>📜 Respostas Recebidas</h4>
+        <span>${totalRespostas}</span>
+    </div>
+
+    <div class="card-conselho">
+        <h4>🐉 Ausências Registradas</h4>
+        <span>${recusas}</span>
+    </div>
+
+    <div class="card-conselho">
+    <h4>👑 Classe Dominante</h4>
+    <span>${classeDominante}</span>
+</div>
+
+`;
+
+painel.innerHTML += `
+
+    <div class="estatisticas-classes">
+
+        <h3>⚔️ Ranking das Classes ⚔️</h3>
+
+        ${htmlClasses}
+
+    </div>
+
+`;
+}
+
+
 
