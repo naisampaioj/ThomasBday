@@ -2,14 +2,19 @@
     --ouro:#b38a3d;
     --vinho:#5c1f1f;
     --musgo:#43533f;
-    --pergaminho:#ead8b0;
+    --pergaminho:#ead8b0 !important ;
     --fundo:#0f0f0f;
+    color-scheme: light;
 }
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
+}
+
+html{
+    color-scheme: light;
 }
 
 body{
@@ -78,11 +83,13 @@ button{
     border-radius:12px;
     line-height:1.9;
     font-size: 1.45rem;
+    /* text-align: center; */
 }
 
 .pergaminho h3{
     font-family:'Cinzel', serif;
     margin-bottom:20px;
+    text-align: center;
 }
 
 .classes{
@@ -511,6 +518,10 @@ margin-top:20px;
 
     border-radius:12px;
 
+    grid-column: 1 / -1;
+    width:100%;
+    box-sizing:border-box;
+
 }
 
 .estatisticas-classes h3{
@@ -528,6 +539,8 @@ margin-top:20px;
     border-bottom:1px solid rgba(0,0,0,.1);
 
     font-size:1.2rem;
+
+    white-space:nowrap;
 
 }
 
@@ -579,17 +592,66 @@ margin-top:20px;
         font-size:1rem;
     }
 
-    .painel-conselho{
-        grid-template-columns:1fr;
-    }
 
-    .card-conselho{
-        padding:15px;
-    }
+#painelReino{
 
-    .classe-estatistica{
-        font-size:1rem;
-    }
+    grid-template-columns:1fr;
+
+    gap:15px;
+
+}
+
+.card-conselho{
+
+    min-height:auto;
+
+    padding:18px;
+
+}
+
+.card-conselho h4{
+
+    font-size:1.1rem;
+
+}
+
+.card-conselho span{
+
+    font-size:1.6rem;
+
+}
+
+.estatisticas-classes{
+
+    width:100%;
+
+    padding:18px;
+
+    margin-top:0;
+    max-width:900px;
+    margin:20px auto 0 auto;
+
+}
+
+.estatisticas-classes h3{
+
+    font-size:1.2rem;
+
+}
+
+.classe-estatistica{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-size:1rem;
+
+    padding:12px 5px;
+
+}
 
     iframe{
         width:100%;
