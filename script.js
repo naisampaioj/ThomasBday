@@ -566,7 +566,10 @@ painel.innerHTML = `
 
 `;
 
-painel.innerHTML += `
+const rankingContainer =
+    document.getElementById("rankingClasses");
+
+rankingContainer.innerHTML = `
 
     <div class="estatisticas-classes">
 
